@@ -3,10 +3,11 @@
 //
 
 import SwiftUI
+import shared       // sharedのimportを追加
 
 struct ContentView: View {
     
-    @State private var count: Int = 0
+    @State private var count: Int = 1   // カウントの初期値を1に修正
     
     var body: some View {
         VStack {
@@ -17,7 +18,8 @@ struct ContentView: View {
 
             // カウントをインクリメントするボタン
             Button(action: {
-                count += 1
+                // Calculatorの呼び出しを追加(Int32, Intのキャストが必要)
+                count = Int(Calculator().double(number: Int32(count)))
             }) {
                 Text("+")
                     .font(.headline)

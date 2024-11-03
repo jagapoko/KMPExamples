@@ -24,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.jagapoko.shared.Calculator
 import com.jagapoko.sharedexample.ui.theme.SharedExampleTheme
 
 class MainActivity : ComponentActivity() {
@@ -42,8 +43,8 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun CounterScreen(modifier: Modifier = Modifier) {
-    // Counter value is remembered, and will update when incremented
-    var count by remember { mutableIntStateOf(0) }
+    // カウントの初期値を１に修正
+    var count by remember { mutableIntStateOf(1) }
 
     Column(
         modifier = modifier.run {
@@ -57,7 +58,8 @@ fun CounterScreen(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Button(onClick = { count++ }) {
+        // 以下のボタンクリック時にCalculator.doubleを呼び出すように修正
+        Button(onClick = { count = Calculator().double(count) }) {
             Text(text = "+")
         }
     }
